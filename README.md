@@ -1,5 +1,10 @@
 Implementation of 2048 game
+Refer GameManager.java as entry point to review the core logic of the game.
+Rest Controller and UI code (under resources) are added just for testing and demo purpose and can be ignored for review
+
+Following Use cases are implemented:
 1. Generate an initial board with a random number of `2`s at random cells, e.g.:
+
 ```json
 [
     [2, null, 2, null],
