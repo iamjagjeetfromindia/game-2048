@@ -13,6 +13,9 @@ import lombok.Getter;
 import java.util.List;
 import java.util.Map;
 
+import static game.two048.util.Constants.RULE_NO_MORE_MOVE;
+import static game.two048.util.Constants.RULE_TWO048;
+
 public class GameManager {
     @Getter
     private final Board board;
@@ -51,9 +54,9 @@ public class GameManager {
            return GameState.IN_PROGRESS;
        }
 
-       if (appliedRules.stream().anyMatch(rule -> rule.getName().equals("Goal of 2048"))) {
+       if (appliedRules.stream().anyMatch(rule -> rule.getName().equalsIgnoreCase(RULE_TWO048))) {
            return GameState.WIN;
-       } else if (appliedRules.stream().anyMatch(rule -> rule.getName().equals("No More Move"))) {
+       } else if (appliedRules.stream().anyMatch(rule -> rule.getName().equalsIgnoreCase(RULE_NO_MORE_MOVE))) {
            return GameState.GAME_OVER;
        }
        return GameState.IN_PROGRESS;

@@ -2,6 +2,7 @@ package game.two048.rule;
 
 import game.two048.model.Board;
 
+import static game.two048.util.Constants.RULE_TWO048;
 import static game.two048.util.Constants.WINNING_VALUE;
 
 public class Two048Rule implements Rule{
@@ -20,6 +21,6 @@ public class Two048Rule implements Rule{
 
     @Override
     public String getName() {
-        return "Goal of 2048";
+        return RULE_TWO048;
     }
 }

@@ -2,8 +2,9 @@ package game.two048.rule;
 
 import game.two048.model.Board;
 
+import static game.two048.util.Constants.RULE_NO_MORE_MOVE;
+
 public class NoMoreMoveRule implements Rule{
-    private static final int WINNING_VALUE = 2048;
     @Override
     public int getOrder() {
         return 1;
@@ -17,6 +18,6 @@ public class NoMoreMoveRule implements Rule{
 
     @Override
     public String getName() {
-        return "No More Move";
+        return RULE_NO_MORE_MOVE;
     }
 }
