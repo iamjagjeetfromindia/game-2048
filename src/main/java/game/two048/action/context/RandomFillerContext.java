@@ -1,6 +1,6 @@
 package game.two048.action.context;
 
-import game.two048.Board;
+import game.two048.model.Board;
 import lombok.Data;
 
 @Data

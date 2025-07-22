@@ -1,6 +1,6 @@
 package game.two048.rule;
 
-import game.two048.Board;
+import game.two048.model.Board;
 
 import static game.two048.util.Constants.WINNING_VALUE;
 

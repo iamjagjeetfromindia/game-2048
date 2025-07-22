@@ -1,7 +1,7 @@
 
 package game.two048.rule;
 
-import game.two048.Board;
+import game.two048.model.Board;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

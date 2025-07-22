@@ -1,6 +1,6 @@
 package game.two048.action;
 
-import game.two048.Cell;
+import game.two048.model.Cell;
 import game.two048.action.context.RandomFillerContext;
 
 public class RandomFill implements ActionHandler<RandomFillerContext> {

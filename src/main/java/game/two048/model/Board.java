@@ -1,4 +1,4 @@
-package game.two048;
+package game.two048.model;
 
 import lombok.Data;
 

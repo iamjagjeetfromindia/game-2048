@@ -1,12 +1,14 @@
 package game.two048.controller;
 
-import game.two048.Board;
-import game.two048.Cell;
-import game.two048.GameManager;
+import game.two048.model.Board;
+import game.two048.model.Cell;
+import game.two048.manager.GameManager;
 import game.two048.controller.dto.GameResponse;
 import game.two048.controller.dto.MoveRequest;
 import game.two048.controller.dto.RestartRequest;
 import game.two048.controller.dto.StartGameRequest;
+import game.two048.model.GameState;
+import game.two048.model.MoveDirection;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +36,7 @@ public class GameController {
         GameManager gameManager = new GameManager(size, size);
         activeGames.put(gameId, gameManager);
         Board board = gameManager.getBoard();
-        return ResponseEntity.ok(mapToResponse(gameId, board, GameManager.GameState.IN_PROGRESS.toString()));
+        return ResponseEntity.ok(mapToResponse(gameId, board, GameState.IN_PROGRESS.toString()));
     }
 
     @PostMapping("/move")
@@ -45,14 +47,14 @@ public class GameController {
                     .body(new GameResponse(null, null, 0, "NOT_FOUND", GAME_NOT_FOUND));
         }
         try {
-            GameManager.MoveDirection direction = GameManager.MoveDirection.valueOf(request.getDirection().toUpperCase());
+            MoveDirection direction = MoveDirection.valueOf(request.getDirection().toUpperCase());
             gameManager.move(direction);
             Board board = gameManager.getBoard();
             String gameState = gameManager.getGameState().toString();
             return ResponseEntity.ok(mapToResponse(request.getGameId(), board, gameState));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest()
-                    .body(new GameResponse(null, null, 0, GameManager.GameState.IN_PROGRESS.toString(), INVALID_MOVE_DIRECTION));
+                    .body(new GameResponse(null, null, 0, GameState.IN_PROGRESS.toString(), INVALID_MOVE_DIRECTION));
         }
     }
 
@@ -67,7 +69,7 @@ public class GameController {
         GameManager newGameManager = new GameManager(size, size);
         activeGames.put(request.getGameId(), newGameManager);
         Board board = newGameManager.getBoard();
-        return ResponseEntity.ok(mapToResponse(request.getGameId(), board, GameManager.GameState.IN_PROGRESS.toString()));
+        return ResponseEntity.ok(mapToResponse(request.getGameId(), board, GameState.IN_PROGRESS.toString()));
     }
 
     private GameResponse mapToResponse(final String gameId, final Board board, final String gameState) {

@@ -1,8 +1,11 @@
-package game.two048;
+package game.two048.manager;
 
 
 import game.two048.action.*;
 import game.two048.action.context.RandomFillerContext;
+import game.two048.model.Board;
+import game.two048.model.GameState;
+import game.two048.model.MoveDirection;
 import game.two048.rule.Rule;
 import game.two048.rule.RuleEngine;
 import lombok.Getter;
@@ -16,15 +19,6 @@ public class GameManager {
     private final RuleEngine ruleEngine = new RuleEngine();
     private final Map<MoveDirection, ActionHandler<Board>> movers;
     private final ActionHandler<RandomFillerContext> randomFillCommand = new RandomFill();
-
-
-    public enum MoveDirection {
-        LEFT, RIGHT, UP, DOWN,RANDOM_FILL
-    }
-
-    public enum GameState {
-        IN_PROGRESS, WIN, GAME_OVER
-    }
 
     public GameManager(int rows, int cols) {
         this.board = new Board(rows, cols);

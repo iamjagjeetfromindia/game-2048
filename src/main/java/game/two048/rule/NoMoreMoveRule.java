@@ -1,7 +1,6 @@
 package game.two048.rule;
 
-import game.two048.Board;
-import game.two048.Cell;
+import game.two048.model.Board;
 
 public class NoMoreMoveRule implements Rule{
     private static final int WINNING_VALUE = 2048;

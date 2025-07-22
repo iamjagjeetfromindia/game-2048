@@ -1,7 +1,7 @@
 package game.two048.action;
 
-import game.two048.Board;
-import game.two048.Cell;
+import game.two048.model.Board;
+import game.two048.model.Cell;
 
 public abstract class MergeRow extends BaseMoveMerge {
 

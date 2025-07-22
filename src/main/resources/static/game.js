@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const GRID_SIZE = 6;
+    const GRID_SIZE = 4;
     const API_BASE_URL = 'http://localhost:8080/api/game'; // Update with your API URL
     let gameId = null;
     let score = 0;
