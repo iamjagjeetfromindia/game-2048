@@ -1,0 +1,20 @@
+package game.two048.action;
+
+
+
+public class MergeColumnUp extends MergeColumn {
+    @Override
+    protected int getInitialPosition(int length) {
+        return 0;
+    }
+
+    @Override
+    protected int getStep() {
+        return 1;
+    }
+
+    @Override
+    protected boolean shouldContinueProcessing(int index, int length) {
+        return index < length;
+    }
+}
