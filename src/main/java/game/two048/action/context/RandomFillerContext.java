@@ -11,7 +11,6 @@ public class RandomFillerContext {
 
     public enum FillType {
         TWO_AND_NULL,
-        FOUR_AND_NULL,
         TWO_AND_FOUR
     }
 

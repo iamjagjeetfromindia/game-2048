@@ -1,7 +1,5 @@
-package game.two048;
+package game.two048.model;
 
-import game.two048.model.Board;
-import game.two048.model.Cell;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

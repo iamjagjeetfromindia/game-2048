@@ -3,6 +3,8 @@ package game.two048.action;
 import game.two048.model.Cell;
 import game.two048.action.context.RandomFillerContext;
 
+import static game.two048.util.Constants.*;
+
 public class RandomFill implements ActionHandler<RandomFillerContext> {
     @Override
     public void execute(RandomFillerContext context) {
@@ -15,7 +17,7 @@ public class RandomFill implements ActionHandler<RandomFillerContext> {
             else if(cell.getValue() == null && !context.isFillAllCells())
             {
                 //randomly fill some cell
-                if(Math.random() < 0.1)
+                if(Math.random() < PROBABILITY_CELL_FILL_AFTER_MOVE)
                 {
                     cell.setValue(this.getRandomValue(context.getFillType()));
                 }
@@ -26,11 +28,9 @@ public class RandomFill implements ActionHandler<RandomFillerContext> {
 
     private Integer getRandomValue(RandomFillerContext.FillType fillType) {
        if(fillType == RandomFillerContext.FillType.TWO_AND_NULL) {
-            return Math.random() < 0.1 ? 2 : null;
+            return Math.random() < PROBABILITY_FILL_2_IN_2_OR_NULL ? 2 : null;
         } else if(fillType == RandomFillerContext.FillType.TWO_AND_FOUR) {
-           return Math.random() < 0.5 ? 2 : 4;
-        } else if(fillType == RandomFillerContext.FillType.FOUR_AND_NULL) {
-            return Math.random() < 0.5 ? 4 : null;
+           return Math.random() < PROBABILITY_FILL_2_IN_2_OR_4 ? 2 : 4;
         }
         return null; // Default case, should not happen
     }

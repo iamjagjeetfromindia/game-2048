@@ -2,6 +2,7 @@ package game.two048.model;
 
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -15,11 +16,12 @@ public class Board {
     public Board(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
-        initialize(rows);
+        this.cells = new ArrayList<>();
+        this.initialize();
     }
 
     public Cell[] getRow(int row) {
-        return cells.stream()
+        return this.cells.stream()
                 .filter(cell -> cell.getRowIndex() == row)
                 .sorted(Comparator.comparing(Cell::getColumnIndex))
                 .toArray(Cell[]::new);
@@ -28,12 +30,12 @@ public class Board {
 
     public void replaceRow(int row, Cell[] newRow) {
         // remove existing row
-        cells.removeIf(c -> c.getRowIndex() == row);
-        cells.addAll(Arrays.asList(newRow));
+        this.cells.removeIf(c -> c.getRowIndex() == row);
+        this.cells.addAll(Arrays.asList(newRow));
     }
 
     public Cell[] getColumn(int col) {
-        return cells.stream()
+        return this.cells.stream()
                 .filter(cell -> cell.getColumnIndex() == col)
                 .sorted(Comparator.comparing(Cell::getRowIndex))
                 .toArray(Cell[]::new);
@@ -41,18 +43,15 @@ public class Board {
 
     public void replaceColumn(int col, Cell[] newCol) {
         // remove existing column
-        cells.removeIf(c -> c.getColumnIndex() == col);
-        cells.addAll(Arrays.asList(newCol));
+        this.cells.removeIf(c -> c.getColumnIndex() == col);
+        this.cells.addAll(Arrays.asList(newCol));
     }
 
-    public void initialize(int size) {
-        cells = new java.util.ArrayList<>();
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                cells.add(new Cell(i, j, null));
+    public void initialize() {
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                this.cells.add(new Cell(i, j, null));
             }
         }
     }
-
-
 }

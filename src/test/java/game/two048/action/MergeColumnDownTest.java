@@ -155,4 +155,31 @@ public class MergeColumnDownTest {
         assertNull(col[2].getValue());
         assertEquals(4, col[3].getValue());
     }
+    @Test
+    void testMergeDownAlternatingPairs() {
+        Board board = new Board(6, 1);
+        // Set up column: [2, 2, 4, 4, 8, 8]
+        board.getCells().get(0).setValue(2);
+        board.getCells().get(1).setValue(2);
+        board.getCells().get(2).setValue(4);
+        board.getCells().get(3).setValue(4);
+        board.getCells().get(4).setValue(8);
+        board.getCells().get(5).setValue(8);
+
+        MergeColumnDown mergeDown = new MergeColumnDown();
+        mergeDown.execute(board);
+
+        Cell[] col = new Cell[6];
+        for (int i = 0; i < 6; i++) {
+            col[i] = board.getRow(i)[0];
+        }
+
+        assertNull(col[0].getValue());
+        assertNull(col[1].getValue());
+        assertNull(col[2].getValue());
+        assertEquals(4, col[3].getValue());
+        assertEquals(8, col[4].getValue());
+        assertEquals(16, col[5].getValue());
+
+    }
 }
