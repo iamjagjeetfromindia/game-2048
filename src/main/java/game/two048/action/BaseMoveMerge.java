@@ -9,7 +9,6 @@ public abstract class BaseMoveMerge implements ActionHandler<Board> {
     protected Cell[] mergeLine(Cell[] row, int lineNo) {
         Cell[] slide = this.slideLine(row, lineNo);   //slide the cells so that all non-null values are at the start
         return this.mergeAdjacentCell(slide, lineNo); // merge adjacent cells with the same value and move null values to the end
-        //return this.slideLine(merged, lineNo); // slide again to ensure all non-null values are at the start after merging
     }
 
 
